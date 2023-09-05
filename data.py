@@ -6,9 +6,9 @@ import numpy as np
 
 def processData(data):
     df = pd.DataFrame(data)
-    print(df.head())
-    print(df.info())
-    print(df.describe())
+    # print(df.head())
+    # print(df.info())
+    # print(df.describe())
 
     df.dropna(inplace=True)
 
@@ -21,7 +21,7 @@ def processData(data):
     # Drop any rows with missing values
     df.dropna(inplace=True)
         
-    print(df.head())
+    # print(df.head())
     plt.figure(figsize=(10, 6))
 
     # Calculate the minimum and maximum values of offload times
@@ -43,21 +43,12 @@ def processData(data):
     # Set the x-axis ticks at the center of each bin
     plt.xticks(bin_edges)
 
-    # Function to convert minute tick values to hour:minute format
-    # def minute_to_hour_minute(value, tick_number):
-    #     hours = int(value // 60)
-    #     minutes = int(value % 60)
-    #     return f"{hours}:{minutes:02d}"
-
-    # Set the formatter function for the x-axis ticks
-    # plt.gca().xaxis.set_major_formatter(ticker.FuncFormatter(minute_to_hour_minute))
-
     # Create labels for graph
     plt.xlabel('Offload Times (min)')
     plt.ylabel('Count')
     plt.title('Histogram of Time at Hospital for 1000 Most Recent Ambulance Transports')
 
     # Add the number as text below the graph at the specified coordinates (0.5, -0.1)
-    plt.text(0.5, -0.1, "Average time: " + str(df['offload_dttm'].mean().total_seconds() / 60), ha='center', va='center', fontsize=18, transform=plt.gca().transAxes)
+    plt.text(0.5, -0.1, "Average time: " + str(df['offload_dttm'].mean().total_seconds() / 60), ha='center', va='top', fontsize=18, transform=plt.gca().transAxes)
 
     plt.show()
