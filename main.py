@@ -13,7 +13,13 @@ def main():
         '$order': 'call_date DESC',
 
     }
-    response = requests.get(service_calls_base_url, params=filters)
+
+    api_key = "1t43a568i2ojhn4rpgthr7o3u"
+    api_secret = "3fmtl0ym0tfl0riykpkmsty9vtixktsy6bd6gsbm5wwkwzl5mp"
+
+    credentials = (api_key, api_secret)
+
+    response = requests.get(service_calls_base_url, params=filters, auth=credentials)
     if response.status_code == 200:
         # Request was successful
         data = response.json()  # Get the response data as JSON
